@@ -20,13 +20,13 @@ $s-device: 480px;
     }
     @if $size == m {
         // Entre 760px e 1199px
-        @media screen and (min-width: #{$m-device}) and (max-width: "#{$l-device} - 1") {
+        @media screen and (min-width: #{$m-device}) and (max-width: $l-device - 1) {
             @content;
         }
     }
     @if $size == s {
         // Maximo de 759px
-        @media screen and (max-width: "#{$m-device} - 1") {
+        @media screen and (max-width: $m-device - 1) {
             @content;
         }
     }
