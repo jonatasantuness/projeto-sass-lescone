@@ -37,10 +37,10 @@ $s-device: 480px;
     // calculando a porcentagem da coluna
     $width: percentage(($col / $cols));
     // somando o tamanho da coluna ao gutter
-    $result: calc(#{$width} + #{$gutter});
+    $result: calc(#{$width} - #{$gutter});
     // verificando se existe um offset
     @if $offset == offset {
-        // A coluna possui margin left e right, a divisão abaixo serve para pegar o margin left que sobra da coluna offset
+        // As coluna possuem margin left e right, a divisão abaixo serve para somar a coluna desejada ao espaço vazio que 'sobrou' ja contando em sua margem esquerda,
         $gutter: $gutter / 2;
         $result: calc(#{$width} + #{$gutter});
     }
@@ -77,6 +77,7 @@ $s-device: 480px;
 // Loop para gerar as classes offset
 @for $i from 1 through $cols {
     .offset-#{$i} {
+        // O offset nada mais é do que uma margem à esquerda com o tamanho do espaço vazio da coluna que 'sobrou' + seu margin-left
         margin-left: grid($i, offset);
         @extend %offset;
     }
@@ -100,7 +101,7 @@ $s-device: 480px;
 
 // Mixin do Container
 @mixin container {
-    min-width: $l-device;
+    max-width: $l-device;
     margin: 0 auto;
     position: relative;
     @include device(m) {
