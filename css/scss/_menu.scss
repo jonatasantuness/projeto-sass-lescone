@@ -10,6 +10,7 @@
         h2 {
             @include tipo-2(24);
             margin-bottom: 1em;
+            font-weight: bold;
         }
         li {
             @include tipo-1(18);

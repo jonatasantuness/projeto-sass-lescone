@@ -343,6 +343,7 @@ p {
   font-size: 1.5em;
   line-height: 1.25em;
   margin-bottom: 1em;
+  font-weight: bold;
 }
 .menu .menu-item li {
   font-family: "PT Mono", monospace;
@@ -460,6 +461,29 @@ p {
 }
 .contato .contato-mapa img {
   width: 100%;
+}
+
+footer {
+  padding: 20px 0;
+  background: #2a2426;
+  box-shadow: 0 0 0 10px #2a2426;
+}
+footer p {
+  color: #edece4;
+}
+@media screen and (max-width: 759px) {
+  footer p {
+    text-align: center;
+  }
+}
+footer a img {
+  float: right;
+}
+@media screen and (max-width: 759px) {
+  footer a img {
+    float: none;
+    margin: 20px auto;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
