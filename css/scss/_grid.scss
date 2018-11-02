@@ -1,0 +1,137 @@
+// Variáveis
+$cols: 12;
+$gutter: 20px;
+$l-device: 1200px;
+$m-device: 760px;
+$s-device: 480px;
+
+// Box Sizing
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+// Mixins Media Queries
+@mixin device($size) {
+    @if $size == l {
+        // Minimo de 1200px
+        @media screen and (min-width: #{$l-device}) {
+            @content;
+        }
+    }
+    @if $size == m {
+        // Entre 760px e 1199px
+        @media screen and (min-width: #{$m-device}) and (max-width: "#{$l-device} - 1") {
+            @content;
+        }
+    }
+    @if $size == s {
+        // Maximo de 759px
+        @media screen and (max-width: "#{$m-device} - 1") {
+            @content;
+        }
+    }
+}
+
+// Função do Grid
+@function grid($col, $offset: false) {
+    // calculando a porcentagem da coluna
+    $width: percentage(($col / $cols));
+    // somando o tamanho da coluna ao gutter
+    $result: calc(#{$width} + #{$gutter});
+    // verificando se existe um offset
+    @if $offset == offset {
+        // A coluna possui margin left e right, a divisão abaixo serve para pegar o margin left que sobra da coluna offset
+        $gutter: $gutter / 2;
+        $result: calc(#{$width} + #{$gutter});
+    }
+    // retornando o tamanho da coluna já somada ao gutter
+    @return $result;
+}
+
+// Loop para gerar as classes grid
+@for $i from 1 through $cols {
+    .grid-#{$i} {
+        width: grid($i);
+    }
+}
+
+// Mixin Estrutura do grid
+@mixin grid-structure {
+    float: left;
+    min-height: 1px;
+    margin-left: $gutter / 2;
+    margin-right: $gutter / 2;
+    @include device(s) {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+// Selecionando todos os grids e apicando sua estrutura
+[class*="grid-"] {
+    @include grid-structure;
+}
+
+// Loop para gerar as classes offset
+@for $i from 1 through $cols {
+    .offset-#{$i} {
+        margin-left: grid($i, offset);
+        @extend %offset;
+    }
+}
+
+// Resetando a margin do offset no mobile
+@include device(s) {
+    %offset {
+        margin-left: 0px;
+    }
+}
+
+// Mixin Clearfix
+@mixin clearfix {
+    &::after, &::before {
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+
+// Mixin do Container
+@mixin container {
+    min-width: $l-device;
+    margin: 0 auto;
+    position: relative;
+    @include device(m) {
+        max-width: $m-device;
+    }
+    @include device(s) {
+        max-width: $s-device;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    @include clearfix;
+}
+
+// Aplicando a configuração do container
+.container {
+    @include container;
+}
+
+// Mixin de Linha
+@mixin row {
+    position: relative;
+    margin-left: -$gutter / 2;
+    margin-right: -$gutter / 2;
+    @include device(s) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    @include clearfix;
+}
+
+// Aplicando a configuração da linha
+.row {
+    @include row;
+}
