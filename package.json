@@ -1,0 +1,24 @@
+{
+  "name": "projeto-sass-lescone",
+  "version": "1.0.0",
+  "description": "Projeto para estudos de SASS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jotunes23/projeto-sass-lescone.git"
+  },
+  "author": "Jonatas Antunes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jotunes23/projeto-sass-lescone/issues"
+  },
+  "homepage": "https://github.com/jotunes23/projeto-sass-lescone#readme",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}

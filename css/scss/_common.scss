@@ -1,0 +1,37 @@
+body {
+    background: $main-color;
+    border: 10px solid $main-color-mid;
+    color: $gray;
+    @include device(s) {
+        border: none;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p {
+    @include tipo-1(18);
+}
+
+.titulo {
+    @include tipo-1(18);
+    text-transform: uppercase;
+    @include device(s) {
+        margin-bottom: 40px;
+    }
+    &::after {
+        content: '';
+        display: block;
+        width: 75%;
+        float: right;
+        height: 2px;
+        background: $gray;
+        margin-top: 14px;
+        @include device(m) {
+            width: 60%;
+        }
+    }
+}

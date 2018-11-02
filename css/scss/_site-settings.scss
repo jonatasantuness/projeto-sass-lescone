@@ -1,0 +1,40 @@
+// Cores
+$main-color: #edece4;
+$main-color-mid: #cbc6b9;
+$main-color-darker: #988c77;
+$gray: #2a2426;
+$green: #1ab912;
+
+// Fontes
+$font-1: 'PT Mono', monospace;
+$font-2: 'Aref Ruqaa', serif;
+
+// Conversão de 'pixel' para 'em'
+@function em($pixel, $contexto: 16) {
+    @return $pixel / $contexto + em;
+}
+
+// Mixins de tipografia
+@mixin tipo-1($size) {
+    font-family: $font-1;
+    @if $size == 18 {
+        font-size: em(18);
+        line-height: em(30, 18);
+    }
+}
+
+@mixin tipo-2($size) {
+    font-family: $font-2;
+    @if $size == 18 {
+        font-size: em(18);
+        line-height: em(30, 18);
+    }
+    @if $size == 24 {
+        font-size: em(24);
+        line-height: em(30, 24);
+    }
+}
+// Mixins de Sombras
+@mixin box-shadow($shadow...) {
+    box-shadow: $shadow;
+}
