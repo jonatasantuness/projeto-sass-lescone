@@ -34,3 +34,7 @@ $font-2: 'Aref Ruqaa', serif;
         line-height: em(30, 24);
     }
 }
+// Mixins de Sombras
+@mixin box-shadow($shadow...) {
+    box-shadow: $shadow;
+}
